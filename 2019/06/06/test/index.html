@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="随笔,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="最近心血来潮，想搞个自己的博客网站，前前后后把服务器、域名、网站备案一一搞得了。就差个博客系统，不想写前端，就四处去找框架，找到了一些现成的博客框架在一番筛选之下(哪个最简单= =。)，选择了Hexo。一番捣鼓下来，感觉还是不错。下面简单说一说自己构建博客的经历与踩的一些坑.">
+<meta name="keywords" content="随笔">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Hexo构建自己的博客网站">
+<meta property="og:url" content="http://blog.ferlin.top/blog/2019/06/06/test/index.html">
+<meta property="og:site_name" content="erlin&#39;blog">
+<meta property="og:description" content="最近心血来潮，想搞个自己的博客网站，前前后后把服务器、域名、网站备案一一搞得了。就差个博客系统，不想写前端，就四处去找框架，找到了一些现成的博客框架在一番筛选之下(哪个最简单= =。)，选择了Hexo。一番捣鼓下来，感觉还是不错。下面简单说一说自己构建博客的经历与踩的一些坑.">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-06-20T07:31:36.812Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Hexo构建自己的博客网站">
+<meta name="twitter:description" content="最近心血来潮，想搞个自己的博客网站，前前后后把服务器、域名、网站备案一一搞得了。就差个博客系统，不想写前端，就四处去找框架，找到了一些现成的博客框架在一番筛选之下(哪个最简单= =。)，选择了Hexo。一番捣鼓下来，感觉还是不错。下面简单说一说自己构建博客的经历与踩的一些坑.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.ferlin.top/blog/2019/06/06/test/">
+
+
+
+
+
+  <title>使用Hexo构建自己的博客网站 | erlin'blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">erlin'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">请叫我erlin</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.ferlin.top/blog/2019/06/06/test/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ferlin">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/timg.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="erlin'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用Hexo构建自己的博客网站</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-06T14:49:26+08:00">
+                2019-06-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近心血来潮，想搞个自己的博客网站，前前后后把服务器、域名、网站备案一一搞得了。就差个博客系统，不想写前端，就四处去找框架，找到了一些现成的博客框架在一番筛选之下(哪个最简单= =。)，选择了<code>Hexo</code>。一番捣鼓下来，感觉还是不错。下面简单说一说自己构建博客的经历与踩的一些坑.</p>
+<a id="more"></a>
+<h4 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h4><h5 id="nodejs"><a href="#nodejs" class="headerlink" title="nodejs"></a>nodejs</h5><p>由于<code>Hexo</code>是基于nodejs开发的，免不了我们需要安装自己的node环境，这个相对比较简单，直接官网下载相关的包，解压即可，传说门<a href="http://nodejs.cn/download/" target="_blank" rel="noopener">nodejs</a>。node环境安装完后，记得<code>node -v</code>测试一手。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在linux上可能会出现问题，建俩软连接即可。</span></span><br><span class="line">ln -s /xxxx/nodejs/bin/npm /usr/<span class="built_in">local</span>/bin/ </span><br><span class="line">ln -s /xxxx/nodejs/bin/node /usr/<span class="built_in">local</span>/bin/</span><br></pre></td></tr></table></figure>
+
+<p>ok,接下就是修改我们npm仓库了,将npm仓库改为国内仓库，加速我们安装<code>hexo</code>的速度。教程传说门<a href="https://npm.taobao.org/" target="_blank" rel="noopener">淘宝NPM</a>。</p>
+<p>步入我们的正题，安装我们的<code>Hexo</code></p>
+<p>windows平台：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 第一步 安装 hexo-cli</span></span><br><span class="line">npm install -g hexo-cli</span><br><span class="line"><span class="comment"># 第二步 在你用来存放博客文件夹 初始话blog </span></span><br><span class="line">hexo init blog</span><br><span class="line"><span class="comment"># 第三步 启动博客</span></span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<p>第四步：打开浏览器 输入<a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a></p>
+<p>至此，你的博客服务已经跑起来了。简单吧。 </p>
+<p>linux平台</p>
+<p>我在迁移到云服务器上的时候，遇到了一些坑，我简单的理了一下。</p>
+<p>执行<code>hexo init blog</code> 直接提示<code>hexo: command not found</code> 很懵。<br>Google一手，发现是环境变量的问题。直接执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/xxxx/node/node-v10.16.0-linux-x64/lib/node_modules/hexo-cli/bin/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 接着执行</span></span><br><span class="line">hexo init blog</span><br></pre></td></tr></table></figure>
+
+<p>欸，没问题了。但是这个只是临时解决，当你终端关闭的时候，你设置的环境变量就不起作用了。你需要：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 永久添加环境变量(影响所有用户)</span></span><br><span class="line">vim /etc/profile</span><br><span class="line"><span class="comment"># 在文档最后，添加:</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">"/xxxx/node/node-v10.16.0-linux-x64/lib/node_modules/hexo-cli/bin/:<span class="variable">$PATH</span>"</span></span><br><span class="line"><span class="comment"># 保存，退出，然后运行：</span></span><br><span class="line"><span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
+
+<p>访问 http://服务器ip:4000</p>
+<p>自此，你的系统算是真正的初始化成功了。恭喜，你做完了一半的工作。</p>
+<h5 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h5><p>网站访问如果单独只给个ip+port的话，相信是很痛苦的，光ip都需要记许久才能记住，所以我们一般会搞个域名指向我们的服务器。内部再使用nginx代理一手，就可以很好的访问我们的博客网站了。</p>
+<p>首先我们需要安装nginx，下载<a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">Nginx下载地址</a> 找你喜欢的版本，或者为了方便你可以用 yum (CentOS) apt-get (Ubuntu) 快速安装。稍微说一下手动下载安装的方式。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载</span></span><br><span class="line">wget http://nginx.org/download/nginx-1.14.2.tar.gz</span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line">tar -zxvf nginx-1.14.2.tar.gz</span><br><span class="line"><span class="comment"># 启动</span></span><br><span class="line">nginx -c /nginx-1.14.2/conf/nginx.conf</span><br></pre></td></tr></table></figure>
+
+<p>然后查看是否生效，直接访问服务器的ip，出现nginx相关的界面即安装成功。<br>之后就是修改我们的nginx配置文件，代理转发我们本地的服务。下边给出一份我的配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen       80 default_server;</span><br><span class="line">        listen       [::]:80 default_server;</span><br><span class="line">        server_name  你的域名！！;</span><br><span class="line">        root         /usr/share/nginx/html;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Load configuration files for the default server block.</span></span><br><span class="line">        include /etc/nginx/default.d/*.conf;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            proxy_pass http://127.0.0.1:4000;</span><br><span class="line">            proxy_set_header   Host             <span class="variable">$host</span>;</span><br><span class="line">            proxy_set_header   X-Real-IP        <span class="variable">$remote_addr</span>;</span><br><span class="line">            proxy_set_header   X-Forwarded-For  <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再次访问你的服务，即可。</p>
+<h5 id="再说一句"><a href="#再说一句" class="headerlink" title="再说一句"></a>再说一句</h5><p>这边再简单的补充一下我平时的写作发布模式，因为我们的博客系统以及文字资源是直接放在服务器上边的，我是直接在服务器上边运行 <code>nohup hexo s &amp;</code> 来跑博客系统的，所以我文章写作需要发布到服务器上去，才能看到更新。这边简单写了个shell<br>publish.sh</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">ssh root@IP地址 <span class="string">"cd /xxxxxxxxx/blog/source/_posts; ./update.sh <span class="variable">$1</span>"</span></span><br><span class="line"></span><br><span class="line">scp <span class="variable">$1</span> root@IP地址:/xxxxxxxxx/blog/<span class="built_in">source</span>/_posts</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"发布成功"</span></span><br></pre></td></tr></table></figure>
+
+<p>放置在服务端的 update.sh</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="keyword">if</span> [ ! -f <span class="variable">$1</span> ];<span class="keyword">then</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"文件不存在"</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">rm -f <span class="variable">$1</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p>很简单的两个脚本。</p>
+<p>顺便提一下，免密码进行 ssh 以及 scp操作，可操作一手，简单来说就是把你本地的 id_rsa.pub 追加到服务器上边的 ~/.ssh/authorized_keys 文件后边就行。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/随笔/" rel="tag"># 随笔</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/17/hexo-v2/" rel="prev" title="Hexo 简易部署方案">
+                Hexo 简易部署方案 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/timg.jpg" alt="ferlin">
+          <p class="site-author-name" itemprop="name">ferlin</p>
+           
+              <p class="site-description motion-element" itemprop="description">一个碌碌无为的狗子</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/savesmile?tab=repositories" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#环境准备"><span class="nav-number">1.</span> <span class="nav-text">环境准备</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#nodejs"><span class="nav-number">1.1.</span> <span class="nav-text">nodejs</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#nginx"><span class="nav-number">1.2.</span> <span class="nav-text">nginx</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#再说一句"><span class="nav-number">1.3.</span> <span class="nav-text">再说一句</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ferlin</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
